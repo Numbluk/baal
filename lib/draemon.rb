@@ -3,6 +3,10 @@ require 'draemon/version'
 class Draemon
   COMMANDS = %w(--start --stop --status --help --version).freeze
   MATCHING_OPTIONS = %w(--pid --ppid --pidfile --exec --name --user).freeze
+  OPTIONAL_OPTS = %w(--group --signal --retry --startas --test --oknodo) +
+                  %w(--quiet --chuid --chroot --chdir --background) +
+                  %w(--no-close --nicelevel --procshed --ioshed --umask) +
+                  %w(--make-pidfile --remove-pidfile --verbose).freeze
 
   def initialize
     @execution_str = 'start-stop-daemon'

@@ -20,4 +20,17 @@ describe Draemon do
       draemon.status.pid(3).ppid(4).daemonize!
     end.to raise_error(ArgumentError)
   end
+
+  context 'correct commands and options from cli --help output' do
+    let(:cli_help_output) { `start-stop-daemon --help` }
+
+    def output_parser(start_str)
+      start_str.scan(/(--[\w\-]+ )/)
+    end
+
+    it 'has the same commands' do
+      opts = Draemon::COMMANDS + Draemon::MATCHING_OPTIONS + Draemon::OPTIONAL_OPTS
+      expect(output_parser(cli_help_output).sort) == opts.sort
+    end
+  end
 end
