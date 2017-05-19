@@ -156,18 +156,20 @@ class Draemon
     self
   end
 
-  # TODO: Provide options for a "nice version" of the name
   def procshed(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " --procshed=#{policy}#{priority} "
     self
   end
+  alias proc_shed procshed
+  alias process_schedule procshed
 
   def iosched(sched_class, priority)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " --iosched=#{sched_class}#{priority} "
     self
   end
+  alias io_sched iosched
 
   def umask(mask)
     @execution_str += " --umask=#{mask} "
