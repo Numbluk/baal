@@ -21,15 +21,16 @@ describe Draemon do
     end.to raise_error(ArgumentError)
   end
 
-  context 'correct commands and options from cli --help output' do
+  context 'start-stop-daemon --help output' do
     let(:cli_help_output) { `start-stop-daemon --help` }
 
     def output_parser(start_str)
       start_str.scan(/(--[\w\-]+ )/)
     end
 
-    it 'has the same commands' do
-      opts = Draemon::COMMANDS + Draemon::MATCHING_OPTIONS + Draemon::OPTIONAL_OPTS
+    it 'has all the same commands and options' do
+      opts = Draemon::COMMANDS + Draemon::MATCHING_OPTIONS +
+             Draemon::OPTIONAL_OPTS
       expect(output_parser(cli_help_output).sort) == opts.sort
     end
   end
