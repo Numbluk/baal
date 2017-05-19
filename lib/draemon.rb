@@ -164,7 +164,8 @@ class Draemon
   end
 
   def iosched(sched_class, priority)
-    @execution_str += " --iosched=#{sched_class}:#{priority} "
+    priority = priority.nil? ? ' ' : ":#{priority} "
+    @execution_str += " --iosched=#{sched_class}#{priority} "
     self
   end
 
