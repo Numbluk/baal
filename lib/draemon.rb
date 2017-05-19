@@ -2,6 +2,7 @@ require 'draemon/version'
 
 class Draemon
   COMMANDS = %w(--start --stop --status --help --version).freeze
+  MATCHING_OPTIONS = %w(--pid --ppid --pidfile --exec --name --user).freeze
 
   def initialize
     @execution_str = 'start-stop-daemon'
@@ -32,6 +33,16 @@ class Draemon
     self
   end
 
+  def pid(id)
+    @execution_str += " --pid=#{id} "
+    self
+  end
+
+  def ppid(id)
+    @execution_str += " --ppid=#{id} "
+    self
+  end
+
   def daemonize!
     check_errors
     `#{@execution_str}`
@@ -41,6 +52,7 @@ class Draemon
 
   def check_errors
     only_one_command
+    only_one_matching_option
   end
 
   def only_one_command
@@ -52,5 +64,16 @@ class Draemon
     end
 
     raise ArgumentError, 'You can only have one command.' if command_count != 1
+  end
+
+  def only_one_matching_option
+    matching_option_count = 0
+    MATCHING_OPTIONS.each do |option|
+      matching_option_count += 1 if @execution_str.include? option
+    end
+
+    return unless matching_option_count > 1
+
+    raise ArgumentError, 'You can only have one matching option'
   end
 end

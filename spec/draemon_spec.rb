@@ -14,4 +14,10 @@ describe Draemon do
   it 'raises an error if more than one command is executed' do
     expect { draemon.start.stop.daemonize! }.to raise_error(ArgumentError)
   end
+
+  it 'raises an error if more than one matching option is executed' do
+    expect do
+      draemon.status.pid(3).ppid(4).daemonize!
+    end.to raise_error(ArgumentError)
+  end
 end
