@@ -9,31 +9,37 @@ class Draemon
                   %w(--make-pidfile --remove-pidfile --verbose).freeze
 
   def initialize
-    @execution_str = 'start-stop-daemon'
+    @execution_str = ''
+  end
+
+  def daemonize!
+    check_errors
+    @execution_str.prepend 'start-stop-daemon '
+    `#{@execution_str}`
   end
 
   def start
-    @execution_str += ' --start '
+    @execution_str.prepend ' --start '
     self
   end
 
   def stop
-    @execution_str += ' --stop '
+    @execution_str.prepend ' --stop '
     self
   end
 
   def status
-    @execution_str += ' --status '
+    @execution_str.prepend ' --status '
     self
   end
 
   def help
-    @execution_str += ' --help '
+    @execution_str.prepend ' --help '
     self
   end
 
   def version
-    @execution_str += ' --version '
+    @execution_str.prepend ' --version '
     self
   end
 
@@ -192,11 +198,6 @@ class Draemon
   def verbose
     @execution_str += ' --verbose '
     self
-  end
-
-  def daemonize!
-    check_errors
-    `#{@execution_str}`
   end
 
   private
