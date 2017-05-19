@@ -156,20 +156,21 @@ class Draemon
     self
   end
 
-  def procshed(policy, priority = nil)
+  def proc_shed(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " --procshed=#{policy}#{priority} "
     self
   end
-  alias proc_shed procshed
-  alias process_schedule procshed
+  alias procshed proc_shed
+  alias process_schedule proc_shed
 
-  def iosched(sched_class, priority)
+  def io_sched(sched_class, priority)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " --iosched=#{sched_class}#{priority} "
     self
   end
-  alias io_sched iosched
+  alias iosched io_sched
+  alias io_schedule io_sched
 
   def umask(mask)
     @execution_str += " --umask=#{mask} "
