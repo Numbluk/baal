@@ -17,6 +17,21 @@ class Draemon
     self
   end
 
+  def status
+    @execution_str += ' --status '
+    self
+  end
+
+  def help
+    @execution_str += ' --help '
+    self
+  end
+
+  def version
+    @execution_str += ' --version '
+    self
+  end
+
   def daemonize!
     check_errors
     `#{@execution_str}`
