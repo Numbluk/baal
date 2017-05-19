@@ -74,6 +74,123 @@ class Draemon
     self
   end
 
+  # TODO: Refactor group_name and guid together as group
+  def group_name(group_name)
+    @execution_str += " --group=#{group_name} "
+    self
+  end
+
+  def gid(group_id)
+    @execution_str += " --group=#{group_id} "
+    self
+  end
+
+  def signal(signal = 'TERM')
+    @execution_str += " --signal=#{signal} "
+    self
+  end
+
+  # TODO: Make it possible to just use retry
+  def retry_timeout(seconds)
+    @execution_str += " --retry=#{seconds} "
+    self
+  end
+
+  def retry_schedule(schedule)
+    @execution_str += " --retry=#{schedule} "
+    self
+  end
+
+  # TODO: Refactor to also use 'start_at'
+  def start_as(path)
+    @execution_str += " --startas=#{path} "
+    self
+  end
+
+  def test
+    @execution_str += ' --test '
+    self
+  end
+
+  def oknodo
+    @execution_str += ' --oknodo '
+    self
+  end
+
+  def quiet
+    @execution_str += ' --quiet '
+    self
+  end
+
+  # TODO: Refactor change_to_user, etc. to chuid
+  def change_to_user(username, group_or_gid = nil)
+    group_or_gid = group_or_gid.nil? ? ' ' : ":#{group_or_gid} "
+    @execution_str += " --chuid=#{username}#{group_or_gid}"
+    self
+  end
+
+  def change_to_uid(user_id, group_or_gid = nil)
+    group_or_gid = group_or_gid.nil? ? ' ' : ":#{group_or_gid} "
+    @execution_str += " --chuid=#{user_id}#{group_or_gid}"
+    self
+  end
+
+  def chroot(path)
+    @execution_str += " --chroot=#{path} "
+    self
+  end
+
+  def chdir(path)
+    @execution_str += " --chdir=#{path} "
+    self
+  end
+
+  def background
+    @execution_str += ' --background '
+    self
+  end
+
+  # Only relevant when using --background
+  def no_close
+    @execution_str += ' --no-close '
+    self
+  end
+
+  def incr_nice_level(incr)
+    @execution_str += " --nicelevel=#{incr} "
+    self
+  end
+
+  # TODO: Provide options for a "nice version" of the name
+  def procshed(policy, priority)
+    @execution_str += " --procshed=#{policy}:#{priority} "
+  end
+
+  def iosched(sched_class, priority)
+    @execution_str += " --iosched=#{sched_class}:#{priority} "
+    self
+  end
+
+  def umask(mask)
+    @execution_str += " --umask=#{mask} "
+    self
+  end
+
+  def make_pidfile(pidfile_path)
+    @execution_str += " --make-pidfile=#{pidfile_path} "
+    self
+  end
+
+  def remove_pidfile(pidfile_path)
+    @execution_str += " --remove-pidfile=#{pidfile_path} "
+    self
+  end
+
+  def verbose
+    @execution_str += ' --verbose '
+    self
+  end
+
   def daemonize!
     check_errors
     `#{@execution_str}`
