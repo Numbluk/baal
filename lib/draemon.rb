@@ -1,5 +1,5 @@
 require 'draemon/version'
 
-module Draemon
+class Draemon
 
 end
