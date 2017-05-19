@@ -41,71 +41,72 @@ class Draemon
     @execution_str += " --pid=#{id} "
     self
   end
+  alias with_pid pid
 
   def ppid(id)
     @execution_str += " --ppid=#{id} "
     self
   end
+  alias with_ppid ppid
 
   def pidfile(path)
     @execution_str += " --pidfile=#{path} "
     self
   end
+  alias has_pidfile pidfile
 
   def exec(executable)
     @execution_str += " --exec=#{executable} "
     self
   end
+  alias instance_of_exec exec
 
   def name(process_name)
     @execution_str += " --name=#{process_name} "
     self
   end
+  alias with_name name
 
-  # TODO: Refactor username and uid together
   # TODO: Put big alert in documentation
-  def username(username)
-    @execution_str += " --user=#{username} "
+  def user(username_or_uid)
+    @execution_str += " --user=#{username_or_uid} "
     self
   end
+  alias username user
+  alias uid user
+  alias owned_by_user user
+  alias owned_by_username user
+  alias owned_by_uid user
 
-  def uid(uid)
-    @execution_str += " --user=#{uid}"
+  def group(group_name_or_gid)
+    @execution_str += " --group=#{group_name_or_gid} "
     self
   end
-
-  # TODO: Refactor group_name and guid together as group
-  def group_name(group_name)
-    @execution_str += " --group=#{group_name} "
-    self
-  end
-
-  def gid(group_id)
-    @execution_str += " --group=#{group_id} "
-    self
-  end
+  alias group_name group
+  alias gid group
+  alias change_to_group group
+  alias change_to_group_name group
+  alias change_to_gid group
 
   def signal(signal = 'TERM')
     @execution_str += " --signal=#{signal} "
     self
   end
+  alias with_signal signal
 
-  # TODO: Make it possible to just use retry
-  def retry_timeout(seconds)
-    @execution_str += " --retry=#{seconds} "
+  def retry(seconds_or_schedule)
+    @execution_str += " --retry=#{seconds_or_schedule} "
     self
   end
+  alias retry_timeout retry
+  alias retry_schedule retry
 
-  def retry_schedule(schedule)
-    @execution_str += " --retry=#{schedule} "
-    self
-  end
-
-  # TODO: Refactor to also use 'start_at'
-  def start_as(path)
+  def startas(path)
     @execution_str += " --startas=#{path} "
     self
   end
+  alias start_as startas
+  alias start_at startas
 
   def test
     @execution_str += ' --test '
@@ -151,10 +152,11 @@ class Draemon
     self
   end
 
-  def incr_nice_level(incr)
+  def nice_level(incr)
     @execution_str += " --nicelevel=#{incr} "
     self
   end
+  alias incr_nice_level nice_level
 
   def procshed(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
