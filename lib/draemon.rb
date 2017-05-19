@@ -122,18 +122,13 @@ class Draemon
     self
   end
 
-  # TODO: Refactor change_to_user, etc. to chuid
-  def change_to_user(username, group_or_gid = nil)
+  def chuid(username_or_uid, group_or_gid = nil)
     group_or_gid = group_or_gid.nil? ? ' ' : ":#{group_or_gid} "
-    @execution_str += " --chuid=#{username}#{group_or_gid}"
+    @execution_str += " --chuid=#{username_or_uid}#{group_or_gid}"
     self
   end
-
-  def change_to_uid(user_id, group_or_gid = nil)
-    group_or_gid = group_or_gid.nil? ? ' ' : ":#{group_or_gid} "
-    @execution_str += " --chuid=#{user_id}#{group_or_gid}"
-    self
-  end
+  alias change_to_user chuid
+  alias change_to_uid chuid
 
   def chroot(path)
     @execution_str += " --chroot=#{path} "
