@@ -43,6 +43,33 @@ class Draemon
     self
   end
 
+  def pidfile(path)
+    @execution_str += " --pidfile=#{path} "
+    self
+  end
+
+  def exec(executable)
+    @execution_str += " --exec=#{executable} "
+    self
+  end
+
+  def name(process_name)
+    @execution_str += " --name=#{process_name} "
+    self
+  end
+
+  # TODO: Refactor username and uid together
+  # TODO: Put big alert in documentation
+  def username(username)
+    @execution_str += " --user=#{username} "
+    self
+  end
+
+  def uid(uid)
+    @execution_str += " --user=#{uid}"
+    self
+  end
+
   def daemonize!
     check_errors
     `#{@execution_str}`
