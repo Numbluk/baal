@@ -51,6 +51,6 @@ class Draemon
       command_count += 1 if @execution_str.include? command
     end
 
-    raise ArgumentError, 'You can only have one command.' if command_count > 1
+    raise ArgumentError, 'You can only have one command.' if command_count != 1
   end
 end
