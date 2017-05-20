@@ -14,7 +14,7 @@ class Draemon
   MATCHING_OPTIONS = {
     pid: '--pid',
     ppid: '--ppid',
-    pidfile: '--pidfile',
+    pid_file: '--pidfile',
     exec: '--exec',
     name: '--name',
     user: '--user'
@@ -24,7 +24,7 @@ class Draemon
     group: '--group',
     signal: '--signal',
     retry: '--retry',
-    startas: '--startas',
+    start_as: '--startas',
     test: '--test',
     oknodo: '--oknodo',
     quiet: '--quiet',
@@ -34,8 +34,8 @@ class Draemon
     background: '--background',
     no_close: '--no-close',
     nice_level: '--nicelevel',
-    procsched: '--procsched',
-    iosched: '--iosched',
+    proc_sched: '--procsched',
+    io_sched: '--iosched',
     umask: '--umask',
     make_pidfile: '--make-pidfile',
     remove_pidfile: '--remove-pidfile',
@@ -89,11 +89,12 @@ class Draemon
   end
   alias with_ppid ppid
 
-  def pidfile(path)
-    @execution_str += " #{MATCHING_OPTIONS[:pidfile]}=#{path} "
+  def pid_file(path)
+    @execution_str += " #{MATCHING_OPTIONS[:pid_file]}=#{path} "
     self
   end
-  alias has_pidfile pidfile
+  alias has_pid_file pid_file
+  alias pidfile pid_file
 
   def exec(abs_path_to_executable)
     @execution_str += " #{MATCHING_OPTIONS[:exec]}=#{abs_path_to_executable} "
@@ -141,12 +142,12 @@ class Draemon
   alias retry_timeout retry
   alias retry_schedule retry
 
-  def startas(path)
-    @execution_str += " #{OPTIONAL_OPTS[:startas]}=#{path} "
+  def start_as(path)
+    @execution_str += " #{OPTIONAL_OPTS[:start_as]}=#{path} "
     self
   end
-  alias start_as startas
-  alias start_at startas
+  alias startas start_as
+  alias start_at start_as
 
   def test
     @execution_str += " #{OPTIONAL_OPTS[:test]} "
@@ -198,21 +199,21 @@ class Draemon
   end
   alias incr_nice_level nice_level
 
-  def procshed(policy, priority = nil)
+  def proc_sched(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
-    @execution_str += " #{OPTIONAL_OPTS[:proc_shed]}=#{policy}#{priority} "
+    @execution_str += " #{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority} "
     self
   end
-  alias proc_shed procshed
-  alias process_schedule procshed
+  alias procshed proc_shed
+  alias process_schedule proc_sched
 
-  def iosched(sched_class, priority)
+  def io_sched(sched_class, priority)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " #{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority} "
     self
   end
-  alias io_sched iosched
-  alias io_schedule iosched
+  alias iosched io_sched
+  alias io_schedule io_sched
 
   def umask(mask)
     @execution_str += " #{OPTIONAL_OPTS[:umask]}=#{mask} "
