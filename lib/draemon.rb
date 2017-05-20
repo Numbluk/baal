@@ -1,6 +1,8 @@
 require 'draemon/version'
 
 class Draemon
+  PROGRAM_NAME = 'start-stop-daemon'.freeze
+
   COMMANDS = {
     start: '--start',
     stop:  '--stop',
@@ -46,7 +48,7 @@ class Draemon
 
   def daemonize!
     check_errors
-    @execution_str.prepend 'start-stop-daemon '
+    @execution_str.prepend "#{PROGRAM_NAME} "
     `#{@execution_str}`
   end
 
