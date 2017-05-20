@@ -10,6 +10,16 @@ class Draemon
   }.freeze
 
   MATCHING_OPTIONS = %w(--pid --ppid --pidfile --exec --name --user).freeze
+
+  MATCHING_OPTIONS = {
+    pid: '--pid',
+    ppid: '--ppid',
+    pidfile: '--pidfile',
+    exec: '--exec',
+    name: '--name',
+    user: '--user'
+  }.freeze
+
   OPTIONAL_OPTS = %w(--group --signal --retry --startas --test --oknodo) +
                   %w(--quiet --chuid --chroot --chdir --background) +
                   %w(--no-close --nicelevel --procshed --ioshed --umask) +
@@ -51,38 +61,38 @@ class Draemon
   end
 
   def pid(id)
-    @execution_str += " --pid=#{id} "
+    @execution_str += " #{MATCHING_OPTIONS[:pid]}=#{id} "
     self
   end
   alias with_pid pid
 
   def ppid(id)
-    @execution_str += " --ppid=#{id} "
+    @execution_str += " #{MATCHING_OPTIONS[:ppid]}=#{id} "
     self
   end
   alias with_ppid ppid
 
   def pidfile(path)
-    @execution_str += " --pidfile=#{path} "
+    @execution_str += " #{MATCHING_OPTIONS[:pidfile]}=#{path} "
     self
   end
   alias has_pidfile pidfile
 
   def exec(abs_path_to_executable)
-    @execution_str += " --exec=#{abs_path_to_executable} "
+    @execution_str += " #{MATCHING_OPTIONS[:exec]}=#{abs_path_to_executable} "
     self
   end
   alias instance_of_exec exec
 
   def name(process_name)
-    @execution_str += " --name=#{process_name} "
+    @execution_str += " #{MATCHING_OPTIONS[:name]}=#{process_name} "
     self
   end
   alias with_name name
 
   # TODO: Put big alert in documentation
   def user(username_or_uid)
-    @execution_str += " --user=#{username_or_uid} "
+    @execution_str += " #{MATCHING_OPTIONS[:user]}=#{username_or_uid} "
     self
   end
   alias username user
@@ -227,7 +237,7 @@ class Draemon
 
   def only_one_matching_option
     matching_option_count = 0
-    MATCHING_OPTIONS.each do |option|
+    MATCHING_OPTIONS.each do |_, option|
       matching_option_count += 1 if @execution_str.include? option
     end
 

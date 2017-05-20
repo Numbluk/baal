@@ -29,7 +29,7 @@ describe Draemon do
     end
 
     it 'has all the same commands and options' do
-      opts = Draemon::COMMANDS.values + Draemon::MATCHING_OPTIONS +
+      opts = Draemon::COMMANDS.values + Draemon::MATCHING_OPTIONS.values +
              Draemon::OPTIONAL_OPTS
       expect(output_parser(cli_help_output).sort) == opts.sort
     end
