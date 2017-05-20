@@ -9,8 +9,6 @@ class Draemon
     version: '--version'
   }.freeze
 
-  MATCHING_OPTIONS = %w(--pid --ppid --pidfile --exec --name --user).freeze
-
   MATCHING_OPTIONS = {
     pid: '--pid',
     ppid: '--ppid',
