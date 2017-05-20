@@ -1,7 +1,14 @@
 require 'draemon/version'
 
 class Draemon
-  COMMANDS = %w(--start --stop --status --help --version).freeze
+  COMMANDS = {
+    start: '--start',
+    stop:  '--stop',
+    status: '--status',
+    help: '--help',
+    version: '--version'
+  }.freeze
+
   MATCHING_OPTIONS = %w(--pid --ppid --pidfile --exec --name --user).freeze
   OPTIONAL_OPTS = %w(--group --signal --retry --startas --test --oknodo) +
                   %w(--quiet --chuid --chroot --chdir --background) +
@@ -19,27 +26,27 @@ class Draemon
   end
 
   def start
-    @execution_str.prepend ' --start '
+    @execution_str.prepend COMMANDS[:start]
     self
   end
 
   def stop
-    @execution_str.prepend ' --stop '
+    @execution_str.prepend COMMANDS[:stop]
     self
   end
 
   def status
-    @execution_str.prepend ' --status '
+    @execution_str.prepend COMMANDS[:status]
     self
   end
 
   def help
-    @execution_str.prepend ' --help '
+    @execution_str.prepend COMMANDS[:help]
     self
   end
 
   def version
-    @execution_str.prepend ' --version '
+    @execution_str.prepend COMMANDS[:version]
     self
   end
 
@@ -211,7 +218,7 @@ class Draemon
     # Possible more descriptive errors?
     # Otherwise everything will be an argument error...
     command_count = 0
-    COMMANDS.each do |command|
+    COMMANDS.each do |_, command|
       command_count += 1 if @execution_str.include? command
     end
 
