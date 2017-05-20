@@ -61,8 +61,8 @@ class Draemon
   end
   alias has_pidfile pidfile
 
-  def exec(executable)
-    @execution_str += " --exec=#{executable} "
+  def exec(abs_path_to_executable)
+    @execution_str += " --exec=#{abs_path_to_executable} "
     self
   end
   alias instance_of_exec exec
