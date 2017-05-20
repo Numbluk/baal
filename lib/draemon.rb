@@ -18,10 +18,27 @@ class Draemon
     user: '--user'
   }.freeze
 
-  OPTIONAL_OPTS = %w(--group --signal --retry --startas --test --oknodo) +
-                  %w(--quiet --chuid --chroot --chdir --background) +
-                  %w(--no-close --nicelevel --procshed --ioshed --umask) +
-                  %w(--make-pidfile --remove-pidfile --verbose).freeze
+  OPTIONAL_OPTS = {
+    group: '--group',
+    signal: '--signal',
+    retry: '--retry',
+    startas: '--startas',
+    test: '--test',
+    oknodo: '--oknodo',
+    quiet: '--quiet',
+    chuid: '--chuid',
+    chroot: '--chroot',
+    chdir: '--chdir',
+    background: '--background',
+    no_close: '--no-close',
+    nice_level: '--nicelevel',
+    procsched: '--procsched',
+    iosched: '--iosched',
+    umask: '--umask',
+    make_pidfile: '--make-pidfile',
+    remove_pidfile: '--remove-pidfile',
+    verbose: '--verbose'
+  }.freeze
 
   def initialize
     @execution_str = ''
@@ -100,7 +117,7 @@ class Draemon
   alias owned_by_uid user
 
   def group(group_name_or_gid)
-    @execution_str += " --group=#{group_name_or_gid} "
+    @execution_str += " #{OPTIONAL_OPTS[:group]}=#{group_name_or_gid} "
     self
   end
   alias group_name group
@@ -110,78 +127,78 @@ class Draemon
   alias change_to_gid group
 
   def signal(signal = 'TERM')
-    @execution_str += " --signal=#{signal} "
+    @execution_str += " #{OPTIONAL_OPTS[:signal]}=#{signal} "
     self
   end
   alias with_signal signal
 
   def retry(seconds_or_schedule)
-    @execution_str += " --retry=#{seconds_or_schedule} "
+    @execution_str += " #{OPTIONAL_OPTS[:retry]}=#{seconds_or_schedule} "
     self
   end
   alias retry_timeout retry
   alias retry_schedule retry
 
   def startas(path)
-    @execution_str += " --startas=#{path} "
+    @execution_str += " #{OPTIONAL_OPTS[:startas]}=#{path} "
     self
   end
   alias start_as startas
   alias start_at startas
 
   def test
-    @execution_str += ' --test '
+    @execution_str += " #{OPTIONAL_OPTS[:test]} "
     self
   end
 
   def oknodo
-    @execution_str += ' --oknodo '
+    @execution_str += " #{OPTIONAL_OPTS[:oknodo]} "
     self
   end
 
   def quiet
-    @execution_str += ' --quiet '
+    @execution_str += " #{OPTIONAL_OPTS[:quiet]} "
     self
   end
 
   def chuid(username_or_uid, group_or_gid = nil)
     group_or_gid = group_or_gid.nil? ? ' ' : ":#{group_or_gid} "
-    @execution_str += " --chuid=#{username_or_uid}#{group_or_gid}"
+    @execution_str += " #{OPTIONAL_OPTS[:chuid]}=#{username_or_uid}#{group_or_gid}"
     self
   end
   alias change_to_user chuid
   alias change_to_uid chuid
 
   def chroot(path)
-    @execution_str += " --chroot=#{path} "
+    @execution_str += " #{OPTIONAL_OPTS[:chroot]}=#{path} "
     self
   end
 
   def chdir(path)
-    @execution_str += " --chdir=#{path} "
+    @execution_str += " #{OPTIONAL_OPTS[:chdir]}=#{path} "
     self
   end
 
   def background
-    @execution_str += ' --background '
+    @execution_str += " #{OPTIONAL_OPTS[:background]} "
     self
   end
 
   # Only relevant when using --background
   def no_close
-    @execution_str += ' --no-close '
+    @execution_str += " #{OPTIONAL_OPTS[:no_close]} "
     self
   end
 
   def nice_level(incr)
-    @execution_str += " --nicelevel=#{incr} "
+    @execution_str += " #{OPTIONAL_OPTS[:nice_level]}=#{incr} "
     self
   end
   alias incr_nice_level nice_level
 
   def procshed(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
-    @execution_str += " --procshed=#{policy}#{priority} "
+    @execution_str += " #{OPTIONAL_OPTS[:proc_shed]}=#{policy}#{priority} "
     self
   end
   alias proc_shed procshed
@@ -189,29 +206,29 @@ class Draemon
 
   def iosched(sched_class, priority)
     priority = priority.nil? ? ' ' : ":#{priority} "
-    @execution_str += " --iosched=#{sched_class}#{priority} "
+    @execution_str += " #{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority} "
     self
   end
   alias io_sched iosched
   alias io_schedule iosched
 
   def umask(mask)
-    @execution_str += " --umask=#{mask} "
+    @execution_str += " #{OPTIONAL_OPTS[:umask]}=#{mask} "
     self
   end
 
   def make_pidfile(pidfile_path)
-    @execution_str += " --make-pidfile=#{pidfile_path} "
+    @execution_str += " #{OPTIONAL_OPTS[:make_pidfile]}=#{pidfile_path} "
     self
   end
 
   def remove_pidfile(pidfile_path)
-    @execution_str += " --remove-pidfile=#{pidfile_path} "
+    @execution_str += " #{OPTIONAL_OPTS[:remove_pidfile]}=#{pidfile_path} "
     self
   end
 
   def verbose
-    @execution_str += ' --verbose '
+    @execution_str += " #{OPTIONAL_OPTS[:verbose]} "
     self
   end
 
