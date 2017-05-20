@@ -1,6 +1,8 @@
 require 'draemon/version'
 
 class Draemon
+  attr_reader :execution_str
+
   PROGRAM_NAME = 'start-stop-daemon'.freeze
 
   COMMANDS = {
@@ -44,36 +46,36 @@ class Draemon
 
   def initialize
     @execution_str = ''
+    @testing = false
   end
 
   def daemonize!
     check_errors
-    @execution_str.prepend "#{PROGRAM_NAME} "
     `#{@execution_str}`
   end
 
   def start
-    @execution_str.prepend COMMANDS[:start]
+    @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:start]} "
     self
   end
 
   def stop
-    @execution_str.prepend COMMANDS[:stop]
+    @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:stop]} "
     self
   end
 
   def status
-    @execution_str.prepend COMMANDS[:status]
+    @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:status]} "
     self
   end
 
   def help
-    @execution_str.prepend COMMANDS[:help]
+    @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:help]} "
     self
   end
 
   def version
-    @execution_str.prepend COMMANDS[:version]
+    @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:version]} "
     self
   end
 
