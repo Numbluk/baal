@@ -39,8 +39,8 @@ class Draemon
     proc_sched: '--procsched',
     io_sched: '--iosched',
     umask: '--umask',
-    make_pidfile: '--make-pidfile',
-    remove_pidfile: '--remove-pidfile',
+    make_pid_file: '--make-pidfile',
+    remove_pid_file: '--remove-pidfile',
     verbose: '--verbose'
   }.freeze
 
@@ -236,15 +236,17 @@ class Draemon
     self
   end
 
-  def make_pidfile(pidfile_path)
-    @execution_str += " #{OPTIONAL_OPTS[:make_pidfile]}=#{pidfile_path} "
+  def make_pid_file(pidfile_path)
+    @execution_str += " #{OPTIONAL_OPTS[:make_pid_file]}=#{pidfile_path} "
     self
   end
+  alias make_pidfile make_pid_file
 
-  def remove_pidfile(pidfile_path)
-    @execution_str += " #{OPTIONAL_OPTS[:remove_pidfile]}=#{pidfile_path} "
+  def remove_pid_file(pidfile_path)
+    @execution_str += " #{OPTIONAL_OPTS[:remove_pid_file]}=#{pidfile_path} "
     self
   end
+  alias remove_pidfile remove_pid_file
 
   def verbose
     @execution_str += " #{OPTIONAL_OPTS[:verbose]} "
