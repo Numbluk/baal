@@ -8,14 +8,16 @@ describe Draemon do
   context 'start-stop-daemon --help output' do
     let(:cli_help_output) { `start-stop-daemon --help` }
 
-    def output_parser(start_str)
-      start_str.scan(/(--[\w\-]+ )/)
+    def start_stop_daemon_help_output_parser(str)
+      commands_and_opts = str.scan(/(--[\w\-]+ )/).flatten.sort
+      commands_and_opts.map(&:strip)
     end
 
-    it 'has all the same commands and options' do
+    it 'has all the same commands and options as Draemon' do
       opts = Draemon::COMMANDS.values + Draemon::MATCHING_OPTIONS.values +
-          Draemon::OPTIONAL_OPTS.values
-      expect(output_parser(cli_help_output).sort) == opts.sort
+             Draemon::OPTIONAL_OPTS.values
+      cli_output_commands_and_opts = start_stop_daemon_help_output_parser(cli_help_output)
+      expect(opts.sort).to eq(cli_output_commands_and_opts)
     end
   end
 
