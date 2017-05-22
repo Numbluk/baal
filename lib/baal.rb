@@ -9,21 +9,21 @@ module Baal
     include Baal::MatchingOptions
     include Baal::OptionalOptions
 
-    attr_reader :execution_str
+    attr_reader :execution
 
     def initialize
-      @execution_str = []
+      @execution = []
       @testing = false
     end
 
-    def execution_str
-      @execution_str.join(' ')
+    def execution
+      @execution.join(' ')
     end
 
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
-      `#{@execution_str}`
+      `#{@execution}`
     end
   end
 end

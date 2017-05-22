@@ -4,14 +4,14 @@ require 'baal/commands'
 class DummyClass
   include Baal::Commands
 
-  attr_reader :execution_str
+  attr_reader :execution
 
-  def execution_str
-    @execution_str.join(' ')
+  def execution
+    @execution.join(' ')
   end
 
   def initialize
-    @execution_str = []
+    @execution = []
   end
 
   def daemonize!
@@ -37,27 +37,27 @@ describe Baal::Commands do
 
     it '#start builds the correct execution string' do
       daemon.start
-      expect(daemon.execution_str).to eq('--start')
+      expect(daemon.execution).to eq('--start')
     end
 
     it '#stop builds the correct execution string' do
       daemon.stop
-      expect(daemon.execution_str).to eq('--stop')
+      expect(daemon.execution).to eq('--stop')
     end
 
     it '#status builds the correct execution string' do
       daemon.status
-      expect(daemon.execution_str).to eq('--status')
+      expect(daemon.execution).to eq('--status')
     end
 
     it '#help builds the correct execution string' do
       daemon.help
-      expect(daemon.execution_str).to eq('--help')
+      expect(daemon.execution).to eq('--help')
     end
 
     it '#version builds the correct execution string' do
       daemon.version
-      expect(daemon.execution_str).to eq('--version')
+      expect(daemon.execution).to eq('--version')
     end
   end
 end

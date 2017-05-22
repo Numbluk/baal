@@ -4,14 +4,14 @@ require 'baal/matching_options'
 class DummyClass
   include Baal::MatchingOptions
 
-  attr_reader :execution_str
+  attr_reader :execution
 
-  def execution_str
-    @execution_str.join(' ')
+  def execution
+    @execution.join(' ')
   end
 
   def initialize
-    @execution_str = []
+    @execution = []
   end
 
   def daemonize!
@@ -29,34 +29,34 @@ describe Baal::MatchingOptions do
   context 'when building the execution string' do
     it '#pid builds the correct execution string' do
       daemon.pid(1234)
-      expect(daemon.execution_str).to eq('--pid=1234')
+      expect(daemon.execution).to eq('--pid=1234')
     end
 
     it '#ppid builds the correct execution string' do
       daemon.ppid(1234)
-      expect(daemon.execution_str).to eq('--ppid=1234')
+      expect(daemon.execution).to eq('--ppid=1234')
     end
 
     it '#pid_file builds the correct execution string' do
       pid_file_path = '/what/a/great/path'
       daemon.pid_file(pid_file_path)
-      expect(daemon.execution_str).to eq("--pidfile=#{pid_file_path}")
+      expect(daemon.execution).to eq("--pidfile=#{pid_file_path}")
     end
 
     it '#exec builds the correct execution string' do
       abs_path_to_executable = '/abs/path/to/executable'
       daemon.exec(abs_path_to_executable)
-      expect(daemon.execution_str).to eq("--exec=#{abs_path_to_executable}")
+      expect(daemon.execution).to eq("--exec=#{abs_path_to_executable}")
     end
 
     it '#name builds the correct execution string' do
       daemon.name('great_process')
-      expect(daemon.execution_str).to eq('--name=great_process')
+      expect(daemon.execution).to eq('--name=great_process')
     end
 
     it '#user builds the correct execution string' do
       daemon.user('dave')
-      expect(daemon.execution_str).to eq('--user=dave')
+      expect(daemon.execution).to eq('--user=dave')
     end
   end
 end
