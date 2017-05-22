@@ -245,18 +245,24 @@ class Draemon
 
   private
 
-  def check_only_one_command
-    # Possible more descriptive errors?
-    # Otherwise everything will be an argument error...
+  # Possible more descriptive errors?
+  # Otherwise everything will be an argument error...
+  def include_multiple_commands?
     command_count = 0
     COMMANDS.each do |_, command|
       command_count += 1 if @execution_str.include? command
+
+      raise ArgumentError, 'You can only have one command.' if command_count > 1
+    end
+  end
+
+  def at_least_one_command?
+    COMMANDS.each do |_, command|
+      return if @execution_str.include? command
     end
 
-    raise ArgumentError, 'You can only have one command.' if command_count != 1
+    raise ArgumentError, 'You must have at least one command.'
   end
-  alias include_multiple_commands? check_only_one_command
-  alias at_least_one_command? check_only_one_command
 
   def at_least_one_matching_option?
     matching_option_count = 0
