@@ -1,7 +1,7 @@
 require 'rspec'
 require 'baal/matching_options'
 
-class DummyDaemon
+class DummyClass
   include Baal::MatchingOptions
 
   attr_reader :execution_str
@@ -16,7 +16,7 @@ class DummyDaemon
 end
 
 describe Baal::MatchingOptions do
-  let(:daemon) { DummyDaemon.new }
+  let(:daemon) { DummyClass.new }
 
   it "raises an error if at least one matching option isn't executed" do
     expect { daemon.daemonize! }.to raise_error(ArgumentError)

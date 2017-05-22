@@ -1,7 +1,7 @@
 require 'rspec'
 require 'baal/optional_options'
 
-class DummyDaemon
+class DummyClass
   include Baal::OptionalOptions
 
   attr_reader :execution_str
@@ -13,7 +13,7 @@ end
 
 describe Baal::OptionalOptions do
   context 'when building the execution string' do
-    let(:daemon) { DummyDaemon.new }
+    let(:daemon) { DummyClass.new }
 
     it '#group builds the correct execution string' do
       daemon.group('public')
