@@ -265,15 +265,9 @@ class Draemon
   end
 
   def at_least_one_matching_option?
-    matching_option_count = 0
     MATCHING_OPTIONS.each do |_, option|
-      if @execution_str.include? option
-        matching_option_count += 1
-        break
-      end
+      return if @execution_str.include? option
     end
-
-    return unless matching_option_count > 0
 
     raise ArgumentError, 'You must have at least one matching option.'
   end
