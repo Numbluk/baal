@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'draemon/version'
+require 'baal/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'draemon'
-  spec.version       = Draemon::VERSION
+  spec.name          = 'Baal'
+  spec.version       = Baal::VERSION
   spec.authors       = ['Lukas Nimmo']
   spec.email         = ['Lukas.nimmo@gmail.com']
 
-  spec.summary       = 'Draemon is a Ruby wrapper for start-stop-daemon ' \
+  spec.summary       = 'Baal is a Ruby wrapper for start-stop-daemon ' \
     'that attempts to be helpful.'
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = 'MIT'

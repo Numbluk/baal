@@ -1,6 +1,6 @@
-require 'draemon/version'
+require 'baal/version'
 
-class Draemon
+class Baal
   attr_reader :execution_str
 
   PROGRAM_NAME = 'start-stop-daemon'.freeze
