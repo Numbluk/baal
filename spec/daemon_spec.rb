@@ -17,6 +17,4 @@ describe Baal::Daemon do
       expect(opts.sort).to eq(cli_output_commands_and_opts)
     end
   end
-
-  # TODO: test the execution string
 end
