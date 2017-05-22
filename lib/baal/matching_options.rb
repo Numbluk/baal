@@ -28,8 +28,8 @@ module Baal
     alias with_pid_file pid_file
     alias pidfile pid_file
 
-    def exec(abs_path_to_executable)
-      @execution_str.push "#{MATCHING_OPTIONS[:exec]}=#{abs_path_to_executable}"
+    def exec(abs_path_to_exec)
+      @execution_str.push "#{MATCHING_OPTIONS[:exec]}=#{abs_path_to_exec}"
       self
     end
     alias instance_of_exec exec
