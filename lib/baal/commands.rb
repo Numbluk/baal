@@ -3,16 +3,16 @@ module Baal
     PROGRAM_NAME = 'start-stop-daemon'.freeze
 
     COMMANDS = {
-        start: '--start',
-        stop:  '--stop',
-        status: '--status',
-        help: '--help',
-        version: '--version'
+      start: '--start',
+      stop:  '--stop',
+      status: '--status',
+      help: '--help',
+      version: '--version'
     }.freeze
 
     def start
       @execution_str.unshift COMMANDS[:start]
-      include_multiple_commands? # NOTE: probably makes more sense for this to be before 1st line of method
+      include_multiple_commands?
       self
     end
 
