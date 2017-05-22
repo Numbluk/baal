@@ -50,8 +50,8 @@ class Draemon
   end
 
   def daemonize!
-    check_errors
     at_least_one_command?
+    at_least_one_matching_option?
     `#{@execution_str}`
   end
 
@@ -245,10 +245,6 @@ class Draemon
 
   private
 
-  def check_errors
-    only_one_matching_option
-  end
-
   def check_only_one_command
     # Possible more descriptive errors?
     # Otherwise everything will be an argument error...
@@ -262,14 +258,17 @@ class Draemon
   alias include_multiple_commands? check_only_one_command
   alias at_least_one_command? check_only_one_command
 
-  def only_one_matching_option
+  def at_least_one_matching_option?
     matching_option_count = 0
     MATCHING_OPTIONS.each do |_, option|
-      matching_option_count += 1 if @execution_str.include? option
+      if @execution_str.include? option
+        matching_option_count += 1
+        break
+      end
     end
 
-    return unless matching_option_count > 1
+    return unless matching_option_count > 0
 
-    raise ArgumentError, 'You can only have one matching option'
+    raise ArgumentError, 'You must have at least one matching option.'
   end
 end
