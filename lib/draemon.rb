@@ -206,7 +206,7 @@ class Draemon
     @execution_str += " #{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority} "
     self
   end
-  alias procshed proc_shed
+  alias procshed proc_sched
   alias process_schedule proc_sched
 
   def io_sched(sched_class, priority)
