@@ -1,25 +1,25 @@
 module Baal
   module OptionalOptions
     OPTIONAL_OPTS = {
-        group: '--group',
-        signal: '--signal',
-        retry: '--retry',
-        start_as: '--startas',
-        test: '--test',
-        oknodo: '--oknodo',
-        quiet: '--quiet',
-        chuid: '--chuid',
-        chroot: '--chroot',
-        chdir: '--chdir',
-        background: '--background',
-        no_close: '--no-close',
-        nice_level: '--nicelevel',
-        proc_sched: '--procsched',
-        io_sched: '--iosched',
-        umask: '--umask',
-        make_pid_file: '--make-pidfile',
-        remove_pid_file: '--remove-pidfile',
-        verbose: '--verbose'
+      group: '--group',
+      signal: '--signal',
+      retry: '--retry',
+      start_as: '--startas',
+      test: '--test',
+      oknodo: '--oknodo',
+      quiet: '--quiet',
+      chuid: '--chuid',
+      chroot: '--chroot',
+      chdir: '--chdir',
+      background: '--background',
+      no_close: '--no-close',
+      nice_level: '--nicelevel',
+      proc_sched: '--procsched',
+      io_sched: '--iosched',
+      umask: '--umask',
+      make_pid_file: '--make-pidfile',
+      remove_pid_file: '--remove-pidfile',
+      verbose: '--verbose'
     }.freeze
 
     def group(group_name_or_gid)
