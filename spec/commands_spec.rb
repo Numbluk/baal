@@ -6,8 +6,12 @@ class DummyClass
 
   attr_reader :execution_str
 
+  def execution_str
+    @execution_str.join(' ')
+  end
+
   def initialize
-    @execution_str = ''
+    @execution_str = []
   end
 
   def daemonize!
