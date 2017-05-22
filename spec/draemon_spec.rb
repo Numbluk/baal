@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Draemon do
-  let(:draemon) { Draemon.new }
-
   it 'has a version number' do
     expect(Draemon::VERSION).not_to be nil
   end
@@ -21,11 +19,19 @@ describe Draemon do
     end
   end
 
-  it 'raises an error if no commands are executed' do
-    expect { draemon.daemonize! }.to raise_error(ArgumentError)
-  end
+  context 'when executing the wrong number of commands or options' do
+    let(:draemon) { Draemon.new }
 
-  it 'raises an error if more than one command is executed' do
-    expect { draemon.start.stop }.to raise_error(ArgumentError)
+    it 'raises an error if no commands are executed' do
+      expect { draemon.daemonize! }.to raise_error(ArgumentError)
+    end
+
+    it 'raises an error if more than one command is executed' do
+      expect { draemon.start.stop }.to raise_error(ArgumentError)
+    end
+
+    it "raises an error if at least one matching option isn't executed" do
+      expect { draemon.start.daemonize! }.to raise_error(ArgumentError)
+    end
   end
 end
