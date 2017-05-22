@@ -1,12 +1,12 @@
 module Baal
   module MatchingOptions
     MATCHING_OPTIONS = {
-        pid: '--pid',
-        ppid: '--ppid',
-        pid_file: '--pidfile',
-        exec: '--exec',
-        name: '--name',
-        user: '--user'
+      pid: '--pid',
+      ppid: '--ppid',
+      pid_file: '--pidfile',
+      exec: '--exec',
+      name: '--name',
+      user: '--user'
     }.freeze
 
     def pid(id)
