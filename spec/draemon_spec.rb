@@ -68,6 +68,41 @@ describe Draemon do
     end
   end
 
-  context 'matching options create the correct output sting'
+  context 'when building the execution string using a command using a matching option' do
+    let(:draemon) { Draemon.new }
+
+    it '#pid builds the correct execution string' do
+      draemon.pid(1234)
+      expect(draemon.execution_str).to eq('--pid=1234')
+    end
+
+    it '#ppid builds the correct execution string' do
+      draemon.ppid(1234)
+      expect(draemon.execution_str).to eq('--ppid=1234')
+    end
+
+    it '#pid_file builds the correct execution string' do
+      pid_file_path = '/what/a/great/path'
+      draemon.pid_file(pid_file_path)
+      expect(draemon.execution_str).to eq("--pidfile=#{pid_file_path}")
+    end
+
+    it '#exec builds the correct execution string' do
+      abs_path_to_executable = '/abs/path/to/executable'
+      draemon.exec(abs_path_to_executable)
+      expect(draemon.execution_str).to eq("--exec=#{abs_path_to_executable}")
+    end
+
+    it '#name builds the correct execution string' do
+      draemon.name('great_process')
+      expect(draemon.execution_str).to eq('--name=great_process')
+    end
+
+    it '#user builds the correct execution string' do
+      draemon.user('dave')
+      expect(draemon.execution_str).to eq('--user=dave')
+    end
+  end
+
   context 'optional options create the correct output string'
 end
