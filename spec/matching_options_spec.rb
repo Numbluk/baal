@@ -22,7 +22,7 @@ describe Baal::MatchingOptions do
     expect { daemon.daemonize! }.to raise_error(ArgumentError)
   end
 
-  context 'when building the execution string using a command using a matching option' do
+  context 'when building the execution string' do
     it '#pid builds the correct execution string' do
       daemon.pid(1234)
       expect(daemon.execution_str).to eq('--pid=1234')

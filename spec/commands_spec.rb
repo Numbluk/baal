@@ -28,7 +28,7 @@ describe Baal::Commands do
     end
   end
 
-  context 'when building the execution string using a command' do
+  context 'when building the execution string' do
     let(:daemon) { DummyDaemon.new }
 
     it '#start builds the correct execution string' do
