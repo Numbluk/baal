@@ -15,12 +15,6 @@ describe Draemon do
     expect { draemon.start.stop }.to raise_error(ArgumentError)
   end
 
-  it 'raises an error if more than one matching option is executed' do
-    expect do
-      draemon.status.pid(3).ppid(4).daemonize!
-    end.to raise_error(ArgumentError)
-  end
-
   context 'start-stop-daemon --help output' do
     let(:cli_help_output) { `start-stop-daemon --help` }
 
