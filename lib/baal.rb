@@ -12,12 +12,12 @@ module Baal
     attr_reader :execution_str
 
     def initialize
-      @execution_str = ''
+      @execution_str = []
       @testing = false
     end
 
     def execution_str
-      @execution_str.strip.gsub(/ {2}/, ' ')
+      @execution_str.join(' ')
     end
 
     def daemonize!
