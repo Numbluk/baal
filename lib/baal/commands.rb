@@ -11,35 +11,35 @@ module Baal
     }.freeze
 
     def start
-      @execution_str.unshift "#{PROGRAM_NAME} #{COMMANDS[:start]}"
+      @execution_str.unshift COMMANDS[:start]
       include_multiple_commands? # NOTE: probably makes more sense for this to be before 1st line of method
       self
     end
 
     def stop
-      @execution_str.unshift "#{PROGRAM_NAME} #{COMMANDS[:stop]}"
+      @execution_str.unshift COMMANDS[:stop]
       include_multiple_commands?
       self
     end
 
     def status
-      @execution_str.unshift "#{PROGRAM_NAME} #{COMMANDS[:status]}"
+      @execution_str.unshift COMMANDS[:status]
       include_multiple_commands?
       self
     end
 
     def help
-      @execution_str.unshift "#{PROGRAM_NAME} #{COMMANDS[:help]}"
+      @execution_str.unshift COMMANDS[:help]
       include_multiple_commands?
       self
     end
 
     def version
-      @execution_str.unshift "#{PROGRAM_NAME} #{COMMANDS[:version]}"
+      @execution_str.unshift COMMANDS[:version]
       include_multiple_commands?
       self
     end
-    
+
     private
 
     def include_multiple_commands?

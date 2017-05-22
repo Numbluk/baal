@@ -37,27 +37,27 @@ describe Baal::Commands do
 
     it '#start builds the correct execution string' do
       daemon.start
-      expect(daemon.execution_str).to eq('start-stop-daemon --start')
+      expect(daemon.execution_str).to eq('--start')
     end
 
     it '#stop builds the correct execution string' do
       daemon.stop
-      expect(daemon.execution_str).to eq('start-stop-daemon --stop')
+      expect(daemon.execution_str).to eq('--stop')
     end
 
     it '#status builds the correct execution string' do
       daemon.status
-      expect(daemon.execution_str).to eq('start-stop-daemon --status')
+      expect(daemon.execution_str).to eq('--status')
     end
 
     it '#help builds the correct execution string' do
       daemon.help
-      expect(daemon.execution_str).to eq('start-stop-daemon --help')
+      expect(daemon.execution_str).to eq('--help')
     end
 
     it '#version builds the correct execution string' do
       daemon.version
-      expect(daemon.execution_str).to eq('start-stop-daemon --version')
+      expect(daemon.execution_str).to eq('--version')
     end
   end
 end
