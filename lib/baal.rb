@@ -1,6 +1,6 @@
 require 'baal/version'
 
-class Baal
+module Baal
   attr_reader :execution_str
 
   PROGRAM_NAME = 'start-stop-daemon'.freeze
