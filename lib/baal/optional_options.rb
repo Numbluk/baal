@@ -53,17 +53,17 @@ module Baal
     alias start_at start_as
 
     def test
-      @execution_str += "#{OPTIONAL_OPTS[:test]}"
+      @execution_str += OPTIONAL_OPTS[:test]
       self
     end
 
     def oknodo
-      @execution_str += "#{OPTIONAL_OPTS[:oknodo]}"
+      @execution_str += OPTIONAL_OPTS[:oknodo]
       self
     end
 
     def quiet
-      @execution_str += "#{OPTIONAL_OPTS[:quiet]}"
+      @execution_str += OPTIONAL_OPTS[:quiet]
       self
     end
 
@@ -86,13 +86,13 @@ module Baal
     end
 
     def background
-      @execution_str += "#{OPTIONAL_OPTS[:background]}"
+      @execution_str += OPTIONAL_OPTS[:background]
       self
     end
 
     # Only relevant when using --background
     def no_close
-      @execution_str += "#{OPTIONAL_OPTS[:no_close]}"
+      @execution_str += OPTIONAL_OPTS[:no_close]
       self
     end
 
