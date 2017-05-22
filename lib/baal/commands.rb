@@ -39,6 +39,8 @@ module Baal
       include_multiple_commands?
       self
     end
+    
+    private
 
     def include_multiple_commands?
       command_count = 0
