@@ -105,7 +105,7 @@ class Draemon
     @execution_str += " #{MATCHING_OPTIONS[:pid_file]}=#{path} "
     self
   end
-  alias has_pid_file pid_file
+  alias with_pid_file pid_file
   alias pidfile pid_file
 
   def exec(abs_path_to_executable)
