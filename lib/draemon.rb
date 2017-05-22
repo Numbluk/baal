@@ -49,6 +49,10 @@ class Draemon
     @testing = false
   end
 
+  def execution_str
+    @execution_str.strip.gsub(/ {2}/, ' ')
+  end
+
   def daemonize!
     at_least_one_command?
     at_least_one_matching_option?
