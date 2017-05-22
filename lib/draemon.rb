@@ -51,31 +51,37 @@ class Draemon
 
   def daemonize!
     check_errors
+    at_least_one_command?
     `#{@execution_str}`
   end
 
   def start
     @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:start]} "
+    include_multiple_commands? # NOTE: probably makes more sense for this to be before 1st line of method
     self
   end
 
   def stop
     @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:stop]} "
+    include_multiple_commands?
     self
   end
 
   def status
     @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:status]} "
+    include_multiple_commands?
     self
   end
 
   def help
     @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:help]} "
+    include_multiple_commands?
     self
   end
 
   def version
     @execution_str.prepend "#{PROGRAM_NAME} #{COMMANDS[:version]} "
+    include_multiple_commands?
     self
   end
 
@@ -240,11 +246,10 @@ class Draemon
   private
 
   def check_errors
-    only_one_command
     only_one_matching_option
   end
 
-  def only_one_command
+  def check_only_one_command
     # Possible more descriptive errors?
     # Otherwise everything will be an argument error...
     command_count = 0
@@ -254,6 +259,8 @@ class Draemon
 
     raise ArgumentError, 'You can only have one command.' if command_count != 1
   end
+  alias include_multiple_commands? check_only_one_command
+  alias at_least_one_command? check_only_one_command
 
   def only_one_matching_option
     matching_option_count = 0
