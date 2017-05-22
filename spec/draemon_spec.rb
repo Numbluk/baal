@@ -12,7 +12,7 @@ describe Draemon do
   end
 
   it 'raises an error if more than one command is executed' do
-    expect { draemon.start.stop.daemonize! }.to raise_error(ArgumentError)
+    expect { draemon.start.stop }.to raise_error(ArgumentError)
   end
 
   it 'raises an error if more than one matching option is executed' do
