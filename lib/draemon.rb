@@ -184,8 +184,8 @@ class Draemon
   alias change_to_user chuid
   alias change_to_uid chuid
 
-  def chroot(path)
-    @execution_str += " #{OPTIONAL_OPTS[:chroot]}=#{path} "
+  def chroot(new_root_dir)
+    @execution_str += " #{OPTIONAL_OPTS[:chroot]}=#{new_root_dir} "
     self
   end
 
@@ -211,6 +211,8 @@ class Draemon
   end
   alias incr_nice_level nice_level
 
+  # TODO: error checking for classes and priority
+  # TODO: allow symbols and underscores
   def proc_sched(policy, priority = nil)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " #{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority} "
@@ -219,6 +221,8 @@ class Draemon
   alias procshed proc_sched
   alias process_schedule proc_sched
 
+  # TODO: error checking for classes and priority
+  # TODO: allow symbols and underscores
   def io_sched(sched_class, priority)
     priority = priority.nil? ? ' ' : ":#{priority} "
     @execution_str += " #{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority} "
