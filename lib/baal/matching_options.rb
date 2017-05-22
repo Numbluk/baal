@@ -40,7 +40,9 @@ module Baal
     end
     alias with_name name
 
-    # TODO: Put big alert in documentation
+    # WARNING:
+    # Using this matching option ALONE will cause all matching processes
+    # to be acted upon.
     def user(username_or_uid)
       @execution.push "#{MATCHING_OPTIONS[:user]}=#{username_or_uid}"
       self
