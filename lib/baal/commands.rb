@@ -56,6 +56,7 @@ module Baal
       include_multiple_commands?
       self
     end
+    alias kill stop
 
     # Command that checks for whether or not a process specified by an option
     # exists. An exit code is returned accord to the LSB Init Script Actions.
