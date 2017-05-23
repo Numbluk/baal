@@ -267,8 +267,8 @@ module Baal
     #          usually only useful when combined with the
     #          OptionalOptions#background option.
     #
-    def make_pid_file(pidfile_path)
-      @execution.push "#{OPTIONAL_OPTS[:make_pid_file]}=#{pidfile_path}"
+    def make_pid_file
+      @execution.push OPTIONAL_OPTS[:make_pid_file]
       self
     end
     alias make_pidfile make_pid_file
@@ -281,8 +281,8 @@ module Baal
     # This will remove the file specified by the MatchingOptions#pidfile
     # option.
     #
-    def remove_pid_file(pidfile_path)
-      @execution.push "#{OPTIONAL_OPTS[:remove_pid_file]}=#{pidfile_path}"
+    def remove_pid_file
+      @execution.push OPTIONAL_OPTS[:remove_pid_file]
       self
     end
     alias remove_pidfile remove_pid_file

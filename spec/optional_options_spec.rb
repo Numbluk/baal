@@ -122,15 +122,13 @@ describe Baal::OptionalOptions do
     end
 
     it '#make_pidfile builds the correct execution string' do
-      new_pid_file_path = '/path/to/new/pid/file'
-      daemon.make_pid_file(new_pid_file_path)
-      expect(daemon.execution).to eq("--make-pidfile=#{new_pid_file_path}")
+      daemon.make_pid_file
+      expect(daemon.execution).to eq('--make-pidfile')
     end
 
     it '#remove_pidfile builds the correct execution string' do
-      pid_file_path = '/path/to/pid/file'
-      daemon.remove_pid_file(pid_file_path)
-      expect(daemon.execution).to eq("--remove-pidfile=#{pid_file_path}")
+      daemon.remove_pid_file
+      expect(daemon.execution).to eq('--remove-pidfile')
     end
 
     it '#verbose builds the correct execution string' do
