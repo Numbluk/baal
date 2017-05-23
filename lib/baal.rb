@@ -55,10 +55,5 @@ module Baal
       at_least_one_matching_option?
       system @execution
     end
-
-    def prepend_program_name
-      @execution.unshift PROGRAM_NAME
-      self
-    end
   end
 end
