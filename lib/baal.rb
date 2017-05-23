@@ -45,10 +45,15 @@ module Baal
 
     # Executes the built up start-stop-daemon string and throws an error if
     # there isn't at least one command and at least one matching option.
+    #
+    # @return [true, false, nil]
+    #    true: if command was successful (exit status 0)
+    #   false: if command was unsuccessful (exit status non-zero)
+    #     nil: if command execution fails
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
-      `#{@execution}`
+      system @execution
     end
 
     def prepend_program_name
