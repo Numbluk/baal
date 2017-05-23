@@ -98,13 +98,11 @@ module Baal
     #
     # @param path [String] path to process to attempt to start as
     #
-    # TODO: remove start_at
     def start_as(path)
       @execution.push "#{OPTIONAL_OPTS[:start_as]}=#{path}"
       self
     end
     alias startas start_as
-    alias start_at start_as
 
     # Print actions that would be taken and set an appropriate return value,
     # but take no action
