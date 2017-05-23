@@ -42,6 +42,7 @@ module Baal
     # TODO: Add method to remove a single command or option
 
     # Clears @execution and starts over with only the PROGRAM_NAME
+    #
     def clear_all!
       @execution.clear
       @execution = [PROGRAM_NAME]
