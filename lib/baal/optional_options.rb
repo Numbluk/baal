@@ -103,7 +103,6 @@ module Baal
     alias incr_nice_level nice_level
 
     # TODO: error checking for classes and priority
-    # TODO: allow symbols and underscores
     # Supported values for policy: :other, :fifo, :rr
     # Default priority: 0 when executed.
     def proc_sched(policy, priority = nil)
@@ -115,7 +114,6 @@ module Baal
     alias process_schedule proc_sched
 
     # TODO: error checking for classes and priority
-    # TODO: allow symbols and underscores
     # Supported values for sched_class: :idle, :best-effort, :real-time
     # priority: default priority 4, unless sched_class id :idle, then it is 7
     def io_sched(sched_class, priority)
