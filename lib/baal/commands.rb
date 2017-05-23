@@ -9,31 +9,31 @@ module Baal
     }.freeze
 
     def start
-      @execution.unshift COMMANDS[:start]
+      @execution.push COMMANDS[:start]
       include_multiple_commands?
       self
     end
 
     def stop
-      @execution.unshift COMMANDS[:stop]
+      @execution.push COMMANDS[:stop]
       include_multiple_commands?
       self
     end
 
     def status
-      @execution.unshift COMMANDS[:status]
+      @execution.push COMMANDS[:status]
       include_multiple_commands?
       self
     end
 
     def help
-      @execution.unshift COMMANDS[:help]
+      @execution.push COMMANDS[:help]
       include_multiple_commands?
       self
     end
 
     def version
-      @execution.unshift COMMANDS[:version]
+      @execution.push COMMANDS[:version]
       include_multiple_commands?
       self
     end
