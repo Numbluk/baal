@@ -1,5 +1,7 @@
 module Baal
   module OptionalOptions
+    class InvalidPolicyError < ArgumentError; end
+
     OPTIONAL_OPTS = {
       group: '--group',
       signal: '--signal',
@@ -102,10 +104,15 @@ module Baal
     end
     alias incr_nice_level nice_level
 
-    # TODO: error checking for classes and priority
+    VALID_POLICIES = %w(other fifo rr).freeze
+
     # Supported values for policy: :other, :fifo, :rr
     # Default priority: 0 when executed.
     def proc_sched(policy, priority = nil)
+      unless VALID_POLICIES.include? policy
+        raise InvalidPolicyError, 'Invalid policy. Expected: other, fifo, rr'
+      end
+
       priority = priority.nil? ? ' ' : ":#{priority}"
       @execution.push "#{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority}"
       self

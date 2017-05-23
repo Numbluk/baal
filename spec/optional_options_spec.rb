@@ -16,6 +16,16 @@ class DummyClass
 end
 
 describe Baal::OptionalOptions do
+  context '#proc_sched' do
+    let(:daemon) { DummyClass.new }
+
+    it 'raises an InvalidPolicyError for an invalid policy' do
+      expect { DummyClass.new.proc_sched('WRONG_POLICY') }.to(
+        raise_error(Baal::OptionalOptions::InvalidPolicyError)
+      )
+    end
+  end
+
   context 'when building the execution string' do
     let(:daemon) { DummyClass.new }
 
