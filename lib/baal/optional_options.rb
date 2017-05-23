@@ -1,6 +1,7 @@
 module Baal
   module OptionalOptions
     class InvalidPolicyError < ArgumentError; end
+    class InvalidScheduleClassError < ArgumentError; end
 
     OPTIONAL_OPTS = {
       group: '--group',
@@ -109,7 +110,7 @@ module Baal
     # Supported values for policy: :other, :fifo, :rr
     # Default priority: 0 when executed.
     def proc_sched(policy, priority = nil)
-      unless VALID_POLICIES.include? policy
+      unless VALID_POLICIES.include? policy.to_s
         raise InvalidPolicyError, 'Invalid policy. Expected: other, fifo, rr'
       end
 
@@ -120,10 +121,17 @@ module Baal
     alias procshed proc_sched
     alias process_schedule proc_sched
 
-    # TODO: error checking for classes and priority
+    VALID_SCHEDULE_CLASSES = %w(idle best-effort real-time).freeze
+
     # Supported values for sched_class: :idle, :best-effort, :real-time
     # priority: default priority 4, unless sched_class id :idle, then it is 7
-    def io_sched(sched_class, priority)
+    def io_sched(sched_class, priority = nil)
+      puts sched_class
+      unless VALID_SCHEDULE_CLASSES.include? sched_class.to_s
+        raise InvalidScheduleClassError,
+              'Invalid schedule class. Expected: idle, best-effort, real-time'
+      end
+
       priority = priority.nil? ? ' ' : ":#{priority}"
       @execution.push "#{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority}"
       self

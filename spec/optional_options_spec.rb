@@ -26,6 +26,16 @@ describe Baal::OptionalOptions do
     end
   end
 
+  context '#io_sched' do
+    let(:daemon) { DummyClass.new }
+
+    it 'raises an InvalidPolicyScheduleClassError for an invalid schedule class' do
+      expect { DummyClass.new.io_sched('WRONG_SCHEDULE_CLASS') }.to(
+        raise_error(Baal::OptionalOptions::InvalidScheduleClassError)
+      )
+    end
+  end
+
   context 'when building the execution string' do
     let(:daemon) { DummyClass.new }
 
