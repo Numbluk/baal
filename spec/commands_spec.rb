@@ -1,13 +1,11 @@
 require 'rspec'
 require 'baal/commands'
 
-class DummyClass
+class CommandsDummyClass
   include Baal::Commands
 
-  attr_reader :execution
-
   def execution
-    @execution.join(' ')
+    @execution.join(' ').strip
   end
 
   def initialize
@@ -21,7 +19,7 @@ end
 
 describe Baal::Commands do
   context 'when executing the wrong number of commands' do
-    let(:daemon) { DummyClass.new }
+    let(:daemon) { CommandsDummyClass.new }
 
     it 'raises an error if no commands are executed' do
       expect { daemon.daemonize! }.to raise_error(ArgumentError)
@@ -33,7 +31,7 @@ describe Baal::Commands do
   end
 
   context 'when building the execution string' do
-    let(:daemon) { DummyClass.new }
+    let(:daemon) { CommandsDummyClass.new }
 
     it '#start builds the correct execution string' do
       daemon.start
@@ -52,6 +50,7 @@ describe Baal::Commands do
 
     it '#help builds the correct execution string' do
       daemon.help
+      puts daemon.execution
       expect(daemon.execution).to eq('--help')
     end
 
