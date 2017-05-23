@@ -39,7 +39,14 @@ module Baal
       @testing = false
     end
 
-    # TODO: Add method to remove a command or option, or start over.
+    # TODO: Add method to remove a single command or option
+
+    # Clears @execution and starts over with only the PROGRAM_NAME
+    def clear_all!
+      @execution.clear
+      @execution = [PROGRAM_NAME]
+      self
+    end
 
     # @return [String] the built up, whitespace-formatted start-stop-daemon
     #   string to be executed

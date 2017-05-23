@@ -56,6 +56,19 @@ You can even check the current status of what is to you have built up so far
 puts daemon.execution
 ```
 
+You can also clear the current contents of what you have built up
+
+```ruby
+# Begin with start
+daemon.start
+daemon.start_as('/path/to/file')
+daemon.pid_file('/path/to/pid_file')
+
+# Something came up! Need to clear it...
+daemon.clear_all!
+```
+
+
 All of the methods that build up your start-stop-daemon script are chain-able
 
 ```ruby
