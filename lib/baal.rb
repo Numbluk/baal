@@ -39,6 +39,8 @@ module Baal
       @testing = false
     end
 
+    # TODO: Add method to remove a command or option, or start over.
+
     # @return [String] the built up, whitespace-formatted start-stop-daemon
     #   string to be executed
     #
