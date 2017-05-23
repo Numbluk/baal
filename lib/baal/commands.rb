@@ -1,6 +1,8 @@
 module Baal
+
   # Commands contains all of the necessary methods to perform all of the
   # possible start-stop-daemon commands.
+  #
   module Commands
     # Hash constant containing all possible commands.
     COMMANDS = {

@@ -13,6 +13,7 @@ require 'baal/optional_options'
 # vs
 #
 # 2. Baal::Daemon.new
+#
 module Baal
   def self.new
     Daemon.new
@@ -25,6 +26,7 @@ module Baal
   # A note should be made that all methods which build the start-stop-daemon
   # script return the Daemon instance for the intention of method chaining
   # where possible so as to read like written English.
+  #
   class Daemon
     include Baal::Commands
     include Baal::MatchingOptions
@@ -37,8 +39,9 @@ module Baal
       @testing = false
     end
 
-    # @return [String] the built up and whitespace-formatted start-stop-daemon
+    # @return [String] the built up, whitespace-formatted start-stop-daemon
     #   string to be executed
+    #
     def execution
       @execution.join(' ').strip
     end
@@ -50,6 +53,9 @@ module Baal
     #    true: if command was successful (exit status 0)
     #   false: if command was unsuccessful (exit status non-zero)
     #     nil: if command execution fails
+    #
+    # TODO: remove usage of system
+    #
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?

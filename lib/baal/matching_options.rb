@@ -1,4 +1,5 @@
 module Baal
+
   # MatchingOptions is a container for all methods relating to adding Matching
   # Options to your start-stop-daemon script. Matching Options are used to
   # target existing processes or identify new ones to be acted upon using a
@@ -6,6 +7,7 @@ module Baal
   #
   # At least one Matching Option is required to execute a start-stop-daemon
   # script.
+  #
   module MatchingOptions
     # All possible Matching Options
     MATCHING_OPTIONS = {

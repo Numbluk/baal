@@ -1,6 +1,8 @@
 module Baal
+
   # Optional Options is a container for all methods relating to options that
   # can be added to your start-stop-daemon script, but are not required
+  #
   module OptionalOptions
     class InvalidPolicyError < ArgumentError; end
     class InvalidScheduleClassError < ArgumentError; end
