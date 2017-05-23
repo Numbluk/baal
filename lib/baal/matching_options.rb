@@ -61,7 +61,7 @@ module Baal
     # Used with Commands#start.
     #
     # Checks for processes that are instances of the executable specified by
-    # @abs_path_to_exec.
+    # abs_path_to_exec.
     #
     # @param abs_path_to_exec [String] the absolute path to the executable
     #
