@@ -1,8 +1,8 @@
 # Baal
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Baal`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Baal is a Ruby wrapper for start-stop-daemon that attempts to make your start-stop-daemon scripts easier to build and
+read while still providing the same options you are used to. Baal, through start-stop-daemon, provides a myriad of ways
+to start new daemon processes and check the status of and stop existing ones.
 
 ## Installation
 
@@ -22,7 +22,57 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The intention of Baal is to provide an easily-readable, step-by-step process of building start-stop-daemon scripts.
+
+The wrapper provides all methods you are used to and attempts to alert you (with a nice red error) if it notices a mistake.
+
+All building is centered around the Daemon object which can be accessed like so:
+
+```ruby
+# Preferred
+daemon = Baal.new
+
+# Not preferred
+daemon = Baal::Daemon.new
+```
+
+Once you have your builder object, it is simply a matter of constructing the needed commands and options.
+
+```ruby
+# Start a new process in the background
+daemon.instance_of_exec('/abs/path/to/executable')
+daemon.with_name('dave')
+```
+
+Then to execute what you have built
+
+```ruby
+daemon.daemonize!
+```
+
+You can even check the current status of what is to you have built up so far
+
+```ruby
+puts daemon.executable
+```
+
+All of the methods that build up your start-stop-daemon script are chain-able
+
+```ruby
+# Check the status of a process
+daemon.status.with_pid(1234).daemonize!
+```
+
+All options with dashes have been converted to underscores and there are many methods that have been written to be more
+Ruby-like, however, if you still prefer the original command and options names, those are available as well 
+
+```ruby
+# Kill a process
+daemon.stop.pid(1234).daemonize!
+```
+
+The documentation in the library should be enough, but if it isn't or you just don't like my writing style then there is
+the official [documenation](https://manpages.debian.org/jessie/dpkg/start-stop-daemon.8.en.html) of start-stop-daemon.
 
 ## Development
 
@@ -32,10 +82,11 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/baal.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/numbluk/baal.
 
 ## License
+
+Copyright (c) 2017 Lukas Nimmo.
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
