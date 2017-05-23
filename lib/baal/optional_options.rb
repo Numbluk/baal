@@ -178,6 +178,7 @@ module Baal
       @execution.push OPTIONAL_OPTS[:background]
       self
     end
+    alias in_background background
 
     # Only relevant when using --background
     def no_close
