@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = <<-HEREDOC
     Baal is a Ruby wrapper for start-stop-daemon that attempts to make your start-stop-daemon scripts easier to build
       and read while still providing the same options you are used to. Baal, through start-stop-daemon, provides a
-      myriad of ways to start new system processes and check the status of and stop existing ones.
+      myriad of ways to start new daemon processes and check the status of and stop existing ones.
     HEREDOC
   spec.homepage      = 'https://github.com/numbluk/baal'
   spec.license       = 'MIT'
