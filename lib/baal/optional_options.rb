@@ -104,6 +104,8 @@ module Baal
 
     # TODO: error checking for classes and priority
     # TODO: allow symbols and underscores
+    # Supported values for policy: :other, :fifo, :rr
+    # Default priority: 0 when executed.
     def proc_sched(policy, priority = nil)
       priority = priority.nil? ? ' ' : ":#{priority}"
       @execution.push "#{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority}"
@@ -114,6 +116,8 @@ module Baal
 
     # TODO: error checking for classes and priority
     # TODO: allow symbols and underscores
+    # Supported values for sched_class: :idle, :best-effort, :real-time
+    # priority: default priority 4, unless sched_class id :idle, then it is 7
     def io_sched(sched_class, priority)
       priority = priority.nil? ? ' ' : ":#{priority}"
       @execution.push "#{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority}"
