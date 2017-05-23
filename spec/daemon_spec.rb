@@ -17,4 +17,10 @@ describe Baal::Daemon do
       expect(opts.sort).to eq(cli_output_commands_and_opts)
     end
   end
+
+  it 'correctly prepends "start-stop-daemon" to execution' do
+    expect(Baal::Daemon.new.prepend_program_name.execution).to(
+      eq('start-stop-daemon')
+    )
+  end
 end

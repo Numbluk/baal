@@ -1,7 +1,5 @@
 module Baal
   module Commands
-    PROGRAM_NAME = 'start-stop-daemon'.freeze
-
     COMMANDS = {
       start: '--start',
       stop:  '--stop',

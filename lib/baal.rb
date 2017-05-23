@@ -9,6 +9,8 @@ module Baal
     include Baal::MatchingOptions
     include Baal::OptionalOptions
 
+    PROGRAM_NAME = 'start-stop-daemon'.freeze
+
     attr_reader :execution
 
     def initialize
@@ -23,7 +25,13 @@ module Baal
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
+      prepend_program_name
       `#{@execution}`
+    end
+
+    def prepend_program_name
+      @execution.unshift PROGRAM_NAME
+      self
     end
   end
 end
