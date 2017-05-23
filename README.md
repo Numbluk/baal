@@ -40,6 +40,7 @@ Once you have your builder object, it is simply a matter of constructing the nee
 
 ```ruby
 # Start a new process in the background
+daemon.start
 daemon.instance_of_exec('/abs/path/to/executable')
 daemon.with_name('dave')
 ```
