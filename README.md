@@ -53,7 +53,7 @@ daemon.daemonize!
 You can even check the current status of what is to you have built up so far
 
 ```ruby
-puts daemon.executable
+puts daemon.execution
 ```
 
 All of the methods that build up your start-stop-daemon script are chain-able
