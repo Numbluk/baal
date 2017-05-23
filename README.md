@@ -30,10 +30,10 @@ a mistake.
 All building is centered around the Daemon object which can be accessed like so:
 
 ```ruby
-# Preferred
+# Better
 daemon = Baal.new
 
-# Not preferred
+# Okay
 daemon = Baal::Daemon.new
 ```
 
@@ -81,10 +81,10 @@ daemon.status.with_pid(1234).daemonize!
 All options with dashes have been converted to underscores, ie.
 
 ```ruby
-# From
+# "Original" (no options for this)
 daemon.make-pidfile
 
-# To
+# Baal's
 daemon.make_pidfile
 ```
  
@@ -99,8 +99,8 @@ daemon.start.start_as('/p/a/t/h').pid_file('/p/a/t/h').change_to_user('dave')
 daemon.start.startas('/p/a/t/h').pidfile('/p/a/t/h').chuid('dave')
 
 # No option for multi-word options with dashes
-daemon.make-pidfile # No method
-daemon.make_pidfile # As above
+daemon.no-close # Error: No method available
+daemon.no_close # Dashes converted to underscores
 ```
 
 The documentation in the library should be enough, but if it isn't, or you just don't like my writing style, then there
