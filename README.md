@@ -45,13 +45,13 @@ daemon.instance_of_exec('/abs/path/to/executable')
 daemon.with_name('dave')
 ```
 
-Then to execute what you have built
+Then execute what you have built
 
 ```ruby
 daemon.daemonize!
 ```
 
-You can even check the current status of what is to you have built up so far
+You can even check the current status of what you are to execute
 
 ```ruby
 puts daemon.execution
@@ -77,12 +77,29 @@ All of the methods that build up your start-stop-daemon script are chain-able
 daemon.status.with_pid(1234).daemonize!
 ```
 
-All options with dashes have been converted to underscores and there are many methods that have been written to be more
-Ruby-like, however, if you still prefer the original command and options names, those are available as well 
+All options with dashes have been converted to underscores, ie.
 
 ```ruby
-# Kill a process
-daemon.stop.pid(1234).daemonize!
+# From
+daemon.make-pidfile
+
+# To
+daemon.make_pidfile
+```
+ 
+and there are many methods that have been written to be more Ruby-like, however, if you still prefer the original
+command and option names (dashes are not allowed), those are available as well 
+
+```ruby
+# These are just options...
+daemon.start.start_as('/p/a/t/h').pid_file('/p/a/t/h').change_to_user('dave')
+
+# Original language
+daemon.start.startas('/p/a/t/h').pidfile('/p/a/t/h').chuid('dave')
+
+# No option for multi-word options with dashes
+daemon.make-pidfile # No method
+daemon.make_pidfile # As above
 ```
 
 The documentation in the library should be enough, but if it isn't or you just don't like my writing style then there is
