@@ -4,6 +4,10 @@ require 'baal/matching_options'
 require 'baal/optional_options'
 
 module Baal
+  def self.new
+    Daemon.new
+  end
+
   class Daemon
     include Baal::Commands
     include Baal::MatchingOptions
