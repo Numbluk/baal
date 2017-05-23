@@ -56,7 +56,7 @@ module Baal
     end
 
     # Command that checks for whether or not a process specified by an option
-    # exists. An exist code is returned accord to the LSB Init Script Actions.
+    # exists. An exit code is returned accord to the LSB Init Script Actions.
     # TODO: provide better error messages based on LSB.
     def status
       @execution.insert 1, COMMANDS[:status]
