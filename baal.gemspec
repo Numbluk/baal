@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'baal/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'Baal'
+  spec.name          = 'baal'
   spec.version       = Baal::VERSION
   spec.authors       = ['Lukas Nimmo']
   spec.email         = ['Lukas.nimmo@gmail.com']
