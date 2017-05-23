@@ -58,6 +58,8 @@ module Baal
     alias with_pid_file pid_file
     alias pidfile pid_file
 
+    # Used with Commands#start.
+    #
     # Checks for processes that are instances of the executable specified by
     # @abs_path_to_exec.
     #
