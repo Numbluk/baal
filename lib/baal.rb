@@ -15,8 +15,6 @@ module Baal
 
     PROGRAM_NAME = 'start-stop-daemon'.freeze
 
-    attr_reader :execution
-
     def initialize
       @execution = []
       @testing = false
