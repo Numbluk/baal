@@ -64,7 +64,7 @@ module Baal
       self
     end
 
-    # Command that shows cli information and then exits.
+    # Command that shows cli help information and then exits.
     def help
       @execution.insert 1, COMMANDS[:help]
       include_multiple_commands?
