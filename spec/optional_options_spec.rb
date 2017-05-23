@@ -1,7 +1,7 @@
 require 'rspec'
 require 'baal/optional_options'
 
-class DummyClass
+class OptionalOptionsDummyClass
   include Baal::OptionalOptions
 
   attr_reader :execution
@@ -17,27 +17,27 @@ end
 
 describe Baal::OptionalOptions do
   context '#proc_sched' do
-    let(:daemon) { DummyClass.new }
+    let(:daemon) { OptionalOptionsDummyClass.new }
 
     it 'raises an InvalidPolicyError for an invalid policy' do
-      expect { DummyClass.new.proc_sched('WRONG_POLICY') }.to(
+      expect { OptionalOptionsDummyClass.new.proc_sched('WRONG_POLICY') }.to(
         raise_error(Baal::OptionalOptions::InvalidPolicyError)
       )
     end
   end
 
   context '#io_sched' do
-    let(:daemon) { DummyClass.new }
+    let(:daemon) { OptionalOptionsDummyClass.new }
 
     it 'raises an InvalidPolicyScheduleClassError for an invalid schedule class' do
-      expect { DummyClass.new.io_sched('WRONG_SCHEDULE_CLASS') }.to(
+      expect { OptionalOptionsDummyClass.new.io_sched('WRONG_SCHEDULE_CLASS') }.to(
         raise_error(Baal::OptionalOptions::InvalidScheduleClassError)
       )
     end
   end
 
   context 'when building the execution string' do
-    let(:daemon) { DummyClass.new }
+    let(:daemon) { OptionalOptionsDummyClass.new }
 
     it '#group builds the correct execution string' do
       daemon.group('public')
