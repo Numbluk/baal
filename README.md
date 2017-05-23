@@ -24,7 +24,8 @@ Or install it yourself as:
 
 The intention of Baal is to provide an easily-readable, step-by-step process of building start-stop-daemon scripts.
 
-The wrapper provides all methods you are used to and attempts to alert you (with a nice red error) if it notices a mistake.
+The wrapper provides all of the methods you are used to and attempts to alert you (with a nice red error) if it notices
+a mistake.
 
 All building is centered around the Daemon object which can be accessed like so:
 
