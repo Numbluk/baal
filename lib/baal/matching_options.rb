@@ -26,7 +26,7 @@ module Baal
     # TODO: Add error to catch for 0 or less.
     #
     def pid(id)
-      @execution.push "#{MATCHING_OPTIONS[:pid]}=#{id}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:pid]}=#{id}"
       self
     end
     alias with_pid pid
@@ -38,7 +38,7 @@ module Baal
     # TODO: Add error to catch for 0 or less.
     #
     def ppid(id)
-      @execution.push "#{MATCHING_OPTIONS[:ppid]}=#{id}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:ppid]}=#{id}"
       self
     end
     alias with_ppid ppid
@@ -52,7 +52,7 @@ module Baal
     #          unintended consequences.
     #
     def pid_file(path)
-      @execution.push "#{MATCHING_OPTIONS[:pid_file]}=#{path}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:pid_file]}=#{path}"
       self
     end
     alias with_pid_file pid_file
@@ -73,7 +73,7 @@ module Baal
     #          avoid this.
     #
     def exec(abs_path_to_exec)
-      @execution.push "#{MATCHING_OPTIONS[:exec]}=#{abs_path_to_exec}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:exec]}=#{abs_path_to_exec}"
       self
     end
     alias instance_of_exec exec
@@ -90,7 +90,7 @@ module Baal
     #       of the expected process name that is 15 characters long.
     #
     def name(process_name)
-      @execution.push "#{MATCHING_OPTIONS[:name]}=#{process_name}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:name]}=#{process_name}"
       self
     end
     alias with_name name
@@ -103,7 +103,7 @@ module Baal
     #          processes to be acted upon.
     #
     def user(username_or_uid)
-      @execution.push "#{MATCHING_OPTIONS[:user]}=#{username_or_uid}"
+      @commands_and_opts.push "#{MATCHING_OPTIONS[:user]}=#{username_or_uid}"
       self
     end
     alias username user

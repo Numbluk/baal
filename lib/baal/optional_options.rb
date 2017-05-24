@@ -36,7 +36,7 @@ module Baal
     #   id to be changed to
     #
     def group(group_name_or_gid)
-      @execution.push "#{OPTIONAL_OPTS[:group]}=#{group_name_or_gid}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:group]}=#{group_name_or_gid}"
       self
     end
     alias group_name group
@@ -51,7 +51,7 @@ module Baal
     # @param signal[String, Symbol] the signal to send
     #
     def signal(signal = 'TERM')
-      @execution.push "#{OPTIONAL_OPTS[:signal]}=#{signal}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:signal]}=#{signal}"
       self
     end
     alias with_signal signal
@@ -86,7 +86,7 @@ module Baal
     # TODO: Add better arguments for constructing a schedule
     #
     def retry(timeout_or_schedule)
-      @execution.push "#{OPTIONAL_OPTS[:retry]}=#{timeout_or_schedule}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:retry]}=#{timeout_or_schedule}"
       self
     end
     alias retry_timeout retry
@@ -101,7 +101,7 @@ module Baal
     # @param path [String] path to process to attempt to start as
     #
     def start_as(path)
-      @execution.push "#{OPTIONAL_OPTS[:start_as]}=#{path}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:start_as]}=#{path}"
       self
     end
     alias startas start_as
@@ -110,7 +110,7 @@ module Baal
     # but take no action
     #
     def test
-      @execution.push OPTIONAL_OPTS[:test]
+      @commands_and_opts.push OPTIONAL_OPTS[:test]
       self
     end
 
@@ -118,14 +118,14 @@ module Baal
     # be, taken
     #
     def oknodo
-      @execution.push OPTIONAL_OPTS[:oknodo]
+      @commands_and_opts.push OPTIONAL_OPTS[:oknodo]
       self
     end
 
     # Do not print informational messages; only display error messages
     #
     def quiet
-      @execution.push OPTIONAL_OPTS[:quiet]
+      @commands_and_opts.push OPTIONAL_OPTS[:quiet]
       self
     end
 
@@ -146,7 +146,7 @@ module Baal
     #
     def chuid(username_or_uid, group_or_gid = nil)
       group_or_gid = group_or_gid.nil? ? '' : ":#{group_or_gid}"
-      @execution.push "#{OPTIONAL_OPTS[:chuid]}=#{username_or_uid}#{group_or_gid}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:chuid]}=#{username_or_uid}#{group_or_gid}"
       self
     end
     alias change_to_user chuid
@@ -159,7 +159,7 @@ module Baal
     # NOTE: the pid_file is written after the chroot
     #
     def chroot(new_root_dir)
-      @execution.push "#{OPTIONAL_OPTS[:chroot]}=#{new_root_dir}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:chroot]}=#{new_root_dir}"
       self
     end
 
@@ -170,19 +170,19 @@ module Baal
     # chdir to the root directory before starting the process.
     #
     def chdir(path)
-      @execution.push "#{OPTIONAL_OPTS[:chdir]}=#{path}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:chdir]}=#{path}"
       self
     end
 
     def background
-      @execution.push OPTIONAL_OPTS[:background]
+      @commands_and_opts.push OPTIONAL_OPTS[:background]
       self
     end
     alias in_background background
 
     # Only relevant when using --background
     def no_close
-      @execution.push OPTIONAL_OPTS[:no_close]
+      @commands_and_opts.push OPTIONAL_OPTS[:no_close]
       self
     end
 
@@ -192,7 +192,7 @@ module Baal
     #   positive or negative
     #
     def nice_level(incr)
-      @execution.push "#{OPTIONAL_OPTS[:nice_level]}=#{incr}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:nice_level]}=#{incr}"
       self
     end
     alias incr_nice_level nice_level
@@ -213,7 +213,7 @@ module Baal
       end
 
       priority = priority.nil? ? ' ' : ":#{priority}"
-      @execution.push "#{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:proc_sched]}=#{policy}#{priority}"
       self
     end
     alias procshed proc_sched
@@ -238,7 +238,7 @@ module Baal
       end
 
       priority = priority.nil? ? ' ' : ":#{priority}"
-      @execution.push "#{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:io_sched]}=#{sched_class}#{priority}"
       self
     end
     alias iosched io_sched
@@ -248,7 +248,7 @@ module Baal
     #
     # @param mask [String, Integer] umask value
     def umask(mask)
-      @execution.push "#{OPTIONAL_OPTS[:umask]}=#{mask}"
+      @commands_and_opts.push "#{OPTIONAL_OPTS[:umask]}=#{mask}"
       self
     end
 
@@ -269,7 +269,7 @@ module Baal
     #          OptionalOptions#background option.
     #
     def make_pid_file
-      @execution.push OPTIONAL_OPTS[:make_pid_file]
+      @commands_and_opts.push OPTIONAL_OPTS[:make_pid_file]
       self
     end
     alias make_pidfile make_pid_file
@@ -283,14 +283,14 @@ module Baal
     # option.
     #
     def remove_pid_file
-      @execution.push OPTIONAL_OPTS[:remove_pid_file]
+      @commands_and_opts.push OPTIONAL_OPTS[:remove_pid_file]
       self
     end
     alias remove_pidfile remove_pid_file
 
     # Print verbose informational messages when executing the script
     def verbose
-      @execution.push OPTIONAL_OPTS[:verbose]
+      @commands_and_opts.push OPTIONAL_OPTS[:verbose]
       self
     end
   end

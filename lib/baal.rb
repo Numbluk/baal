@@ -38,15 +38,15 @@ module Baal
     attr_reader :stdout, :stderr, :std_status
 
     def initialize
-      @execution = [] # TODO: rename execution instance var
+      @commands_and_opts = [] # TODO: rename execution instance var
     end
 
     # TODO: Add method to remove a single command or option
 
-    # Clears @execution and starts over with only the PROGRAM_NAME
+    # Clears @commands_and_opts and starts over with only the PROGRAM_NAME
     #
     def clear_all!
-      @execution.clear
+      @commands_and_opts.clear
       self
     end
 
@@ -54,7 +54,7 @@ module Baal
     #   string to be executed
     #
     def execution
-      ([PROGRAM_NAME] + @execution).join(' ').strip
+      ([PROGRAM_NAME] + @commands_and_opts).join(' ').strip
     end
 
     # Executes the built up start-stop-daemon string and throws an error if
@@ -67,7 +67,7 @@ module Baal
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
-      @stdout, @stderr, @std_status = Open3.capture3(PROGRAM_NAME, *@execution)
+      @stdout, @stderr, @std_status = Open3.capture3(PROGRAM_NAME, *@commands_and_opts)
       nil
     end
   end

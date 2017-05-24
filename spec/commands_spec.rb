@@ -5,11 +5,11 @@ class CommandsDummyClass
   include Baal::Commands
 
   def execution
-    @execution.join(' ').strip
+    @commands_and_opts.join(' ').strip
   end
 
   def initialize
-    @execution = []
+    @commands_and_opts = []
   end
 
   def daemonize!

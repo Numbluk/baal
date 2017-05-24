@@ -28,7 +28,7 @@ module Baal
     #    II. start_as: a path_name to a process
     #
     def start
-      @execution.unshift COMMANDS[:start]
+      @commands_and_opts.unshift COMMANDS[:start]
       include_multiple_commands?
       self
     end
@@ -52,7 +52,7 @@ module Baal
     #     retry: option to check whether or not process(es) finish
     #
     def stop
-      @execution.unshift COMMANDS[:stop]
+      @commands_and_opts.unshift COMMANDS[:stop]
       include_multiple_commands?
       self
     end
@@ -62,14 +62,14 @@ module Baal
     # exists. An exit code is returned accord to the LSB Init Script Actions.
     # TODO: provide better error messages based on LSB.
     def status
-      @execution.unshift COMMANDS[:status]
+      @commands_and_opts.unshift COMMANDS[:status]
       include_multiple_commands?
       self
     end
 
     # Command that shows cli help information and then exits.
     def help
-      @execution.unshift COMMANDS[:help]
+      @commands_and_opts.unshift COMMANDS[:help]
       include_multiple_commands?
       self
     end
@@ -77,7 +77,7 @@ module Baal
     # Command that shows your program version of start-stop-daemon and then
     # exits.
     def version
-      @execution.unshift COMMANDS[:version]
+      @commands_and_opts.unshift COMMANDS[:version]
       include_multiple_commands?
       self
     end
