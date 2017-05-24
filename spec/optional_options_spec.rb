@@ -7,11 +7,11 @@ class OptionalOptionsDummyClass
   attr_reader :execution
 
   def execution
-    @execution.join(' ')
+    @commands_and_opts.join(' ')
   end
 
   def initialize
-    @execution = []
+    @commands_and_opts = []
   end
 end
 

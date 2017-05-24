@@ -3,7 +3,7 @@ require 'baal'
 
 describe Baal::Daemon do
   context '#clear_all!' do
-    it 'clears everything in @executable except the program name' do
+    it 'clears built up to be executed' do
       daemon = Baal::Daemon.new
       daemon.start.clear_all!
       expect(daemon.execution).to eq(Baal::Daemon::PROGRAM_NAME)
