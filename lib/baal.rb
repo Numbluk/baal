@@ -39,7 +39,6 @@ module Baal
 
     def initialize
       @execution = [] # TODO: rename execution instance var
-      @testing = false
     end
 
     # TODO: Add method to remove a single command or option
