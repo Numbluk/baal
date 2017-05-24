@@ -115,8 +115,8 @@ daemon.no-close # Error: No method available
 daemon.no_close # Dashes converted to underscores
 ```
 
-The documentation in the library should be enough, but if it isn't, or you just don't like my writing style, then there
-is the official [documention](https://manpages.debian.org/jessie/dpkg/start-stop-daemon.8.en.html) of start-stop-daemon.
+The documentation in the library should be enough, but if it isn't then there is the official 
+[documention](https://manpages.debian.org/jessie/dpkg/start-stop-daemon.8.en.html) of start-stop-daemon.
 
 ## Contributing
 
