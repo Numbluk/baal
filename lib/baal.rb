@@ -2,6 +2,7 @@ require 'baal/version'
 require 'baal/commands'
 require 'baal/matching_options'
 require 'baal/optional_options'
+require 'open3'
 
 # The Baal module is the namespace containing all interaction with the Baal gem.
 # Very little is actually done directly on the Baal module. The primary
@@ -34,8 +35,10 @@ module Baal
 
     PROGRAM_NAME = 'start-stop-daemon'.freeze
 
+    attr_reader :stdout, :stderr, :std_status
+
     def initialize
-      @execution = []
+      @execution = [] # TODO: rename execution instance var
       @testing = false
     end
 
@@ -63,12 +66,10 @@ module Baal
     #   false: if command was unsuccessful (exit status non-zero)
     #     nil: if command execution fails
     #
-    # TODO: remove usage of system
-    #
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
-      system execution
+      @stdout, @stderr, @std_status = Open3.capture3(PROGRAM_NAME, *@execution)
     end
   end
 end
