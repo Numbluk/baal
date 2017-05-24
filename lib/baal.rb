@@ -61,15 +61,15 @@ module Baal
     # Executes the built up start-stop-daemon string and throws an error if
     # there isn't at least one command and at least one matching option.
     #
-    # @return [true, false, nil]
-    #    true: if command was successful (exit status 0)
-    #   false: if command was unsuccessful (exit status non-zero)
-    #     nil: if command execution fails
+    # @return [nil] returns nil to force user to interact with the attr methods
+    #   for the system output vs the array that would be returned if nil was
+    #   not used
     #
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
       @stdout, @stderr, @std_status = Open3.capture3(PROGRAM_NAME, *@execution)
+      nil
     end
   end
 end
