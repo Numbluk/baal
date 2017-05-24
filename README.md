@@ -52,6 +52,19 @@ Then execute what you have built:
 daemon.daemonize!
 ```
 
+See what happened:
+
+```ruby
+# Standard error
+daemon.stderr
+
+# Standard output
+daemon.stdout
+
+# Status
+daemon.std_status
+```
+
 You can even check the current status of what you are to execute:
 
 ```ruby
