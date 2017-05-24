@@ -38,7 +38,7 @@ module Baal
     attr_reader :stdout, :stderr, :std_status
 
     def initialize
-      @commands_and_opts = [] # TODO: rename execution instance var
+      @commands_and_opts = []
     end
 
     # TODO: Add method to remove a single command or option
