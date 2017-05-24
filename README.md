@@ -37,7 +37,7 @@ daemon = Baal.new
 daemon = Baal::Daemon.new
 ```
 
-Once you have your builder object, it is simply a matter of constructing the needed commands and options.
+Once you have your builder object, it is simply a matter of constructing the needed commands and options:
 
 ```ruby
 # Start a new process in the background
@@ -46,19 +46,19 @@ daemon.instance_of_exec('/abs/path/to/executable')
 daemon.with_name('dave')
 ```
 
-Then execute what you have built
+Then execute what you have built:
 
 ```ruby
 daemon.daemonize!
 ```
 
-You can even check the current status of what you are to execute
+You can even check the current status of what you are to execute:
 
 ```ruby
 puts daemon.execution
 ```
 
-You can also clear the current contents of what you have built up
+You can also clear the current contents of what you have built up:
 
 ```ruby
 # Begin with start
@@ -70,15 +70,14 @@ daemon.pid_file('/path/to/pid_file')
 daemon.clear_all!
 ```
 
-
-All of the methods that build up your start-stop-daemon script are chain-able
+All of the methods that build up your start-stop-daemon script are chain-able:
 
 ```ruby
 # Check the status of a process
 daemon.status.with_pid(1234).daemonize!
 ```
 
-All options with dashes have been converted to underscores, ie.
+All options with dashes have been converted to underscores:
 
 ```ruby
 # "Original" (no options for this)
@@ -88,14 +87,14 @@ daemon.make-pidfile
 daemon.make_pidfile
 ```
  
-and there are many methods that have been written to be more Ruby-like, however, if you still prefer the original
-command and option names (dashes are not allowed), those are available as well 
+There are many methods that have been written to be more Ruby-like, however, if you still prefer the original
+command and option names (dashes are not allowed), those are available as well:
 
 ```ruby
-# These are just options...
+# Baal's
 daemon.start.start_as('/p/a/t/h').pid_file('/p/a/t/h').change_to_user('dave')
 
-# Original language
+# Original
 daemon.start.startas('/p/a/t/h').pidfile('/p/a/t/h').chuid('dave')
 
 # No option for multi-word options with dashes
