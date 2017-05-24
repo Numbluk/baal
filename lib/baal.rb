@@ -35,7 +35,7 @@ module Baal
     PROGRAM_NAME = 'start-stop-daemon'.freeze
 
     def initialize
-      @execution = [PROGRAM_NAME]
+      @execution = []
       @testing = false
     end
 
@@ -45,7 +45,6 @@ module Baal
     #
     def clear_all!
       @execution.clear
-      @execution = [PROGRAM_NAME]
       self
     end
 
@@ -53,7 +52,7 @@ module Baal
     #   string to be executed
     #
     def execution
-      @execution.join(' ').strip
+      ([PROGRAM_NAME] + @execution).join(' ').strip
     end
 
     # Executes the built up start-stop-daemon string and throws an error if
@@ -69,7 +68,7 @@ module Baal
     def daemonize!
       at_least_one_command?
       at_least_one_matching_option?
-      system @execution
+      system execution
     end
   end
 end
